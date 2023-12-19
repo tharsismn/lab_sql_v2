@@ -90,7 +90,28 @@ Filtre as Consultas (p.ex.  Selecione suas próprias Queries):
 <img src="https://raw.githubusercontent.com/Databricks-BR/lab_sql/main/images/lab03_6.png" style="height: 700px;">
 
 
-## Exercício 03.06 - Colocando Comentários na Tabela e nas Colunas
+## Exercício 03.06 - Analisando Query Profiler
+``` sql
+SELECT 
+  empresa.razao_social AS nome_empresa,
+  empresa.capital_social,
+  MIN(estab.data_inicio_atividade) AS ano_abertura
+FROM 
+  bronze_empresas AS empresa
+JOIN 
+  bronze_estabelecimentos estab 
+ON 
+  empresa.cnpj_basico = estab.cnpj_basico
+GROUP BY 
+  empresa.razao_social, empresa.capital_social
+ORDER BY 
+  empresa.capital_social DESC, ano_abertura ASC
+LIMIT 
+  10
+```
+
+
+## Exercício 03.07 - Colocando Comentários na Tabela e nas Colunas
 
 ``` sql
 USE CATALOG academy;
